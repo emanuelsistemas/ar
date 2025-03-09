@@ -56,6 +56,7 @@ function App() {
           <MonitorDown className="w-5 h-5" />
           <span>Suporte técnico profissional</span>
         </div>
+        <p className="mt-2 text-sm">by Emanuel Souza | ValeSis</p>
       </footer>
     </div>
   );
