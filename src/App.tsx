@@ -9,7 +9,7 @@ function App() {
       <div className="flex flex-col md:flex-row gap-8 items-center justify-center w-full max-w-4xl">
         {/* RustDesk Card */}
         <a 
-          href="https://repositorio.appbr.io/api/public/dl/VpWeDt9N/Software/Acesso-Remoto/rustdesk.exe"
+          href="https://yizqriyqioovhwijwumm.supabase.co/storage/v1/object/public/files/07e86138-c4f8-4de5-81ab-bfe18fd6e666/0.6438339188635249.exe"
           target="_blank"
           rel="noopener noreferrer"
           className="w-full md:w-1/2 bg-zinc-900 p-6 rounded-xl hover:bg-zinc-800 transition-all duration-300 flex flex-col items-center group"
