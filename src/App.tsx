@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 function App() {
+  useEffect(() => {
+    // Redirecionar para a página static.html
+    window.location.href = '/static.html';
+  }, []);
+
   return (
     <div style={{ 
       padding: '20px', 
@@ -13,16 +18,7 @@ function App() {
       alignItems: 'center',
       justifyContent: 'center'
     }}>
-      <h1 style={{ fontSize: '2rem', marginBottom: '20px' }}>Ferramentas de Acesso Remoto</h1>
-      <div style={{ 
-        padding: '15px', 
-        backgroundColor: '#333', 
-        borderRadius: '8px', 
-        marginTop: '20px',
-        maxWidth: '400px'
-      }}>
-        <p style={{ color: '#4ade80' }}>Página de teste funcionando!</p>
-      </div>
+      <h1 style={{ fontSize: '2rem', marginBottom: '20px' }}>Redirecionando...</h1>
     </div>
   );
 }
