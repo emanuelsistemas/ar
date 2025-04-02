@@ -178,6 +178,36 @@ sudo certbot --nginx -d ar.emasoftware.io
 # O Certbot modificará automaticamente o arquivo de configuração do Nginx
 ```
 
+### ⚠️ Importante: Evitando problemas com HTTPS
+
+**ATENÇÃO: Cuidado com certificados autoassinados**
+
+Se você optar por não usar certificados válidos (como Let's Encrypt), é preferível manter o site apenas em HTTP em vez de usar certificados autoassinados. Certificados autoassinados causarão avisos de segurança nos navegadores e podem impedir o acesso ao site.
+
+```nginx
+# CONFIGURAÇÃO RECOMENDADA SEM SSL (melhor que usar certificados autoassinados)
+server {
+    listen 80;
+    server_name ar.emasoftware.io;
+
+    root /var/www/ar.emasoftware.io;
+    index index.html static.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Enable gzip compression
+    gzip on;
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+}
+```
+
+**PROBLEMAS CONHECIDOS:**
+- Usar certificados autoassinados fará com que o site não seja acessível nos navegadores modernos sem adicionar exceções de segurança manualmente
+- Redirecionamentos forçados para HTTPS com certificados inválidos bloqueiam totalmente o acesso ao site
+- Use sempre certificados válidos (Let's Encrypt) para HTTPS ou mantenha o site em HTTP simples
+
 ## 🔄 Manutenção
 
 ### Atualização do código
