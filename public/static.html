@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
+        /* Estilos anteriores permanecem os mesmos */
         :root {
             --primary-color: #2563eb;
             --secondary-color: #dc2626;
@@ -288,6 +289,68 @@
             letter-spacing: 0.5px;
         }
         
+        .browser-download-arrow {
+            position: fixed;
+            top: -15px;
+            right: 120px;
+            width: auto;
+            height: auto;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            z-index: 9999;
+            display: none;
+            pointer-events: none;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.7));
+            animation: arrowPulse 1.5s infinite;
+            overflow: visible;
+        }
+        
+        .dark-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 9998;
+            display: none;
+            pointer-events: none;
+        }
+        
+        @keyframes arrowPulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .test-button-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+            padding: 20px;
+            background-color: rgba(37, 99, 235, 0.1);
+            border-radius: 15px;
+        }
+        
+        .test-button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
         @media (max-width: 768px) {
             .container {
                 width: 95%;
@@ -315,8 +378,7 @@
         <p class="subtitle">Soluções de suporte técnico à distância para uma assistência rápida e eficiente</p>
         
         <div class="cards">
-            <!-- RustDesk Card -->
-            <div class="card">
+            <div class="card" id="rustdesk-card">
                 <a href="https://yizqriyqioovhwijwumm.supabase.co/storage/v1/object/public/files/07e86138-c4f8-4de5-81ab-bfe18fd6e666/0.6438339188635249.exe" class="card-link" download>
                     <img src="https://avatars.githubusercontent.com/u/71636191?v=4" alt="RustDesk Logo" class="card-img">
                     <h2>RustDesk</h2>
@@ -329,15 +391,14 @@
                         <li>Transferência de arquivos integrada</li>
                     </ul>
                     
-                    <a href="https://yizqriyqioovhwijwumm.supabase.co/storage/v1/object/public/files/07e86138-c4f8-4de5-81ab-bfe18fd6e666/0.6438339188635249.exe" class="download-btn blue-btn" download>
+                    <button class="download-btn blue-btn">
                         <span class="download-icon"></span>
                         Baixar RustDesk (Windows)
-                    </a>
+                    </button>
                 </a>
             </div>
 
-            <!-- AnyDesk Card -->
-            <div class="card">
+            <div class="card" id="anydesk-card">
                 <a href="https://download.anydesk.com/AnyDesk.exe" class="card-link" download>
                     <img src="https://img.icons8.com/?size=512&id=cDG2YNX6xhA6&format=png" alt="AnyDesk Logo" class="card-img">
                     <h2>AnyDesk</h2>
@@ -350,10 +411,10 @@
                         <li class="red">Segurança de dados criptografados</li>
                     </ul>
                     
-                    <a href="https://download.anydesk.com/AnyDesk.exe" class="download-btn red-btn" download>
+                    <button class="download-btn red-btn">
                         <span class="download-icon"></span>
                         Baixar AnyDesk (Windows)
-                    </a>
+                    </button>
                 </a>
             </div>
         </div>
@@ -428,6 +489,13 @@
                 </div>
             </div>
         </div>
+
+        <!-- Botão de teste adicionado aqui, antes do footer -->
+        <div class="test-button-container">
+            <button id="test-download-indicator" class="test-button">
+                Testar Indicador de Download
+            </button>
+        </div>
     </div>
 
     <footer>
@@ -440,5 +508,82 @@
         <p>Escolha a ferramenta de sua preferência para iniciar o acesso remoto</p>
         <p class="company"><a href="https://emasoftware.io/" target="_blank" style="color: inherit; text-decoration: none; transition: color 0.3s ease;">ema-software</a></p>
     </footer>
+
+    <!-- Overlay e seta para indicação de download -->
+    <div class="dark-overlay" id="dark-overlay"></div>
+    <div class="browser-download-arrow" id="browser-download-arrow">
+        <svg width="80" height="120" viewBox="0 0 40 80">
+            <line x1="25" y1="30" x2="25" y2="70" stroke="#FFFF00" stroke-width="5" stroke-linecap="round" />
+            <polygon points="25,15 15,30 35,30" fill="#FFFF00" />
+        </svg>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const rustdeskCard = document.getElementById('rustdesk-card');
+            const anydeskCard = document.getElementById('anydesk-card');
+            const browserArrow = document.getElementById('browser-download-arrow');
+            const darkOverlay = document.getElementById('dark-overlay');
+            const testButton = document.getElementById('test-download-indicator');
+            
+            function showDownloadIndicator() {
+                browserArrow.style.display = 'block';
+                darkOverlay.style.display = 'block';
+                
+                setTimeout(() => {
+                    browserArrow.style.display = 'none';
+                    darkOverlay.style.display = 'none';
+                }, 5000);
+            }
+            
+            // Adiciona evento de clique ao botão de teste
+            if (testButton) {
+                testButton.addEventListener('click', () => {
+                    showDownloadIndicator();
+                });
+            }
+            
+            function handleCardClick(e, downloadUrl) {
+                if (!e.target.closest('.download-btn')) {
+                    e.preventDefault();
+                }
+                
+                showDownloadIndicator();
+                
+                const link = document.createElement('a');
+                link.href = downloadUrl;
+                link.download = '';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+            
+            if (rustdeskCard) {
+                const rustdeskUrl = rustdeskCard.querySelector('.card-link').href;
+                rustdeskCard.addEventListener('click', (e) => handleCardClick(e, rustdeskUrl));
+                
+                const rustdeskBtn = rustdeskCard.querySelector('.download-btn');
+                if (rustdeskBtn) {
+                    rustdeskBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        showDownloadIndicator();
+                    });
+                }
+            }
+            
+            if (anydeskCard) {
+                const anydeskUrl = anydeskCard.querySelector('.card-link').href;
+                anydeskCard.addEventListener('click', (e) => handleCardClick(e, anydeskUrl));
+                
+                const anydeskBtn = anydeskCard.querySelector('.download-btn');
+                if (anydeskBtn) {
+                    anydeskBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        showDownloadIndicator();
+                    });
+                }
+            }
+        });
+    </script>
 </body>
 </html>

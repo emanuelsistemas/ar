@@ -1,16 +1,16 @@
-import { StrictMode } from 'react';
+import React from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App.tsx';
+import App from './App';
 import './index.css';
 
+// Redirecionar para a página estática
+window.location.href = '/index.html';
+
 const rootElement = document.getElementById('root');
-
-if (!rootElement) {
-  throw new Error('Failed to find the root element');
+if (rootElement) {
+  createRoot(rootElement).render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
 }
-
-createRoot(rootElement).render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);

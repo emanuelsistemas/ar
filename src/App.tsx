@@ -1,24 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 function App() {
-  useEffect(() => {
-    // Redirecionar para a página static.html
-    window.location.href = '/static.html';
-  }, []);
-
   return (
-    <div style={{ 
-      padding: '20px', 
-      textAlign: 'center', 
-      backgroundColor: '#111', 
-      color: 'white', 
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center'
-    }}>
-      <h1 style={{ fontSize: '2rem', marginBottom: '20px' }}>Redirecionando...</h1>
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="bg-white p-8 rounded-lg shadow-md">
+        <h1 className="text-2xl font-bold mb-4">Carregando...</h1>
+        <p className="text-gray-600">Aguarde enquanto redirecionamos você para a página de acesso remoto.</p>
+      </div>
     </div>
   );
 }
