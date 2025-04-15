@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acesso Remoto</title>
+    <title>Acesso Remoto - Solução Completa</title>
     <link rel="icon" type="image/svg+xml" href="remote-access.svg">
-    <link rel="shortcut icon" type="image/svg+xml" href="remote-access.svg">
-    <link rel="apple-touch-icon" href="remote-access.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -286,12 +284,49 @@
             font-weight: 400;
             color: var(--text-primary);
             letter-spacing: 0.5px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .company a {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            padding: 5px 10px;
+        }
+
+        .company a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .company a:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .company a:hover {
+            text-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
+            letter-spacing: 1px;
         }
         
         .browser-download-arrow {
             position: fixed;
-            top: 15px;
-            right: 35px;
+            top: -15px;
+            right: 120px;
             width: auto;
             height: auto;
             margin: 0;
@@ -303,7 +338,6 @@
             filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.7));
             animation: arrowPulse 1.5s infinite;
             overflow: visible;
-            transform: scale(1.5);
         }
         
         .dark-overlay {
@@ -319,36 +353,9 @@
         }
         
         @keyframes arrowPulse {
-            0% { transform: scale(1.5); opacity: 1; }
-            50% { transform: scale(1.7); opacity: 0.8; }
-            100% { transform: scale(1.5); opacity: 1; }
-        }
-        
-        .test-button-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            margin: 40px 0;
-            padding: 20px;
-            background-color: rgba(37, 99, 235, 0.1);
-            border-radius: 15px;
-        }
-        
-        .test-button {
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .test-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
         }
         
         @media (max-width: 768px) {
@@ -378,43 +385,41 @@
         <p class="subtitle">Soluções de suporte técnico à distância para uma assistência rápida e eficiente</p>
         
         <div class="cards">
+            <!-- RustDesk Card -->
             <div class="card" id="rustdesk-card">
-                <a href="https://yizqriyqioovhwijwumm.supabase.co/storage/v1/object/public/files/07e86138-c4f8-4de5-81ab-bfe18fd6e666/0.6438339188635249.exe" class="card-link" download>
-                    <img src="https://avatars.githubusercontent.com/u/71636191?v=4" alt="RustDesk Logo" class="card-img">
-                    <h2>RustDesk</h2>
-                    <p class="card-description">Software de acesso remoto open-source, alternativa segura e de código aberto para suporte técnico</p>
-                    
-                    <ul class="features">
-                        <li>Software de código aberto e gratuito</li>
-                        <li>Não requer configuração de rede</li>
-                        <li>Controle total do computador remoto</li>
-                        <li>Transferência de arquivos integrada</li>
-                    </ul>
-                    
-                    <button class="download-btn blue-btn">
-                        <span class="download-icon"></span>
-                        Baixar RustDesk (Windows)
-                    </button>
+                <img src="https://avatars.githubusercontent.com/u/71636191?v=4" alt="RustDesk Logo" class="card-img">
+                <h2>RustDesk</h2>
+                <p class="card-description">Software de acesso remoto open-source, alternativa segura e de código aberto para suporte técnico</p>
+                
+                <ul class="features">
+                    <li>Software de código aberto e gratuito</li>
+                    <li>Não requer configuração de rede</li>
+                    <li>Controle total do computador remoto</li>
+                    <li>Transferência de arquivos integrada</li>
+                </ul>
+                
+                <a href="https://yizqriyqioovhwijwumm.supabase.co/storage/v1/object/public/files/07e86138-c4f8-4de5-81ab-bfe18fd6e666/0.6438339188635249.exe" class="download-btn blue-btn" download>
+                    <span class="download-icon"></span>
+                    Baixar RustDesk (Windows)
                 </a>
             </div>
 
+            <!-- AnyDesk Card -->
             <div class="card" id="anydesk-card">
-                <a href="https://download.anydesk.com/AnyDesk.exe" class="card-link" download>
-                    <img src="https://img.icons8.com/?size=512&id=cDG2YNX6xhA6&format=png" alt="AnyDesk Logo" class="card-img">
-                    <h2>AnyDesk</h2>
-                    <p class="card-description">Software de acesso remoto rápido e seguro, com interface intuitiva e alta performance</p>
-                    
-                    <ul class="features">
-                        <li class="red">Conexão de alta performance</li>
-                        <li class="red">Interface amigável e intuitiva</li>
-                        <li class="red">Compatível com múltiplos dispositivos</li>
-                        <li class="red">Segurança de dados criptografados</li>
-                    </ul>
-                    
-                    <button class="download-btn red-btn">
-                        <span class="download-icon"></span>
-                        Baixar AnyDesk (Windows)
-                    </button>
+                <img src="https://img.icons8.com/?size=512&id=cDG2YNX6xhA6&format=png" alt="AnyDesk Logo" class="card-img">
+                <h2>AnyDesk</h2>
+                <p class="card-description">Software de acesso remoto rápido e seguro, com interface intuitiva e alta performance</p>
+                
+                <ul class="features">
+                    <li class="red">Conexão de alta performance</li>
+                    <li class="red">Interface amigável e intuitiva</li>
+                    <li class="red">Compatível com múltiplos dispositivos</li>
+                    <li class="red">Segurança de dados criptografados</li>
+                </ul>
+                
+                <a href="https://download.anydesk.com/AnyDesk.exe" class="download-btn red-btn" download>
+                    <span class="download-icon"></span>
+                    Baixar AnyDesk (Windows)
                 </a>
             </div>
         </div>
@@ -489,12 +494,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="test-button-container">
-            <button id="test-download-indicator" class="test-button">
-                Testar Indicador de Download
-            </button>
-        </div>
     </div>
 
     <footer>
@@ -505,13 +504,13 @@
             <span>Suporte técnico profissional</span>
         </div>
         <p>Escolha a ferramenta de sua preferência para iniciar o acesso remoto</p>
-        <p class="company"><a href="https://emasoftware.io/" target="_blank" style="color: inherit; text-decoration: none; transition: color 0.3s ease;">ema-software</a></p>
+        <p class="company"><a href="https://emasoftware.app" target="_blank">ema-software</a></p>
     </footer>
 
     <div class="dark-overlay" id="dark-overlay"></div>
     <div class="browser-download-arrow" id="browser-download-arrow">
-        <svg width="120" height="160" viewBox="0 0 40 80">
-            <line x1="25" y1="30" x2="25" y2="70" stroke="#FFFF00" stroke-width="6" stroke-linecap="round" />
+        <svg width="80" height="120" viewBox="0 0 40 80" style="position: absolute; top: 0;">
+            <line x1="25" y1="30" x2="25" y2="70" stroke="#FFFF00" stroke-width="5" stroke-linecap="round" />
             <polygon points="25,15 15,30 35,30" fill="#FFFF00" />
         </svg>
     </div>
@@ -520,67 +519,65 @@
         document.addEventListener('DOMContentLoaded', function() {
             const rustdeskCard = document.getElementById('rustdesk-card');
             const anydeskCard = document.getElementById('anydesk-card');
+            
             const browserArrow = document.getElementById('browser-download-arrow');
             const darkOverlay = document.getElementById('dark-overlay');
-            const testButton = document.getElementById('test-download-indicator');
             
-            function showDownloadIndicator() {
+            function mostrarSeta() {
                 browserArrow.style.display = 'block';
                 darkOverlay.style.display = 'block';
                 
-                setTimeout(() => {
+                setTimeout(function() {
                     browserArrow.style.display = 'none';
                     darkOverlay.style.display = 'none';
-                }, 5000);
+                }, 10000);
             }
             
-            if (testButton) {
-                testButton.addEventListener('click', () => {
-                    showDownloadIndicator();
-                });
+            function iniciarDownload(card) {
+                const downloadBtn = card.querySelector('.download-btn');
+                if (downloadBtn && downloadBtn.href) {
+                    const tempLink = document.createElement('a');
+                    tempLink.href = downloadBtn.href;
+                    tempLink.download = downloadBtn.download || '';
+                    tempLink.style.display = 'none';
+                    document.body.appendChild(tempLink);
+                    tempLink.click();
+                    document.body.removeChild(tempLink);
+                }
             }
             
-            function handleCardClick(e, downloadUrl) {
-                if (!e.target.closest('.download-btn')) {
-                    e.preventDefault();
+            function ativarEfeitoSeta(e) {
+                const card = e.currentTarget;
+                
+                if (e.target.closest('.download-btn')) {
+                    mostrarSeta();
+                    return;
                 }
                 
-                showDownloadIndicator();
+                if (e.target.closest('a[href]') && !e.target.closest('.download-btn')) {
+                    return;
+                }
                 
-                const link = document.createElement('a');
-                link.href = downloadUrl;
-                link.download = '';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
+                e.preventDefault();
+                e.stopPropagation();
+                
+                iniciarDownload(card);
+                mostrarSeta();
             }
             
             if (rustdeskCard) {
-                const rustdeskUrl = rustdeskCard.querySelector('.card-link').href;
-                rustdeskCard.addEventListener('click', (e) => handleCardClick(e, rustdeskUrl));
-                
-                const rustdeskBtn = rustdeskCard.querySelector('.download-btn');
-                if (rustdeskBtn) {
-                    rustdeskBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        showDownloadIndicator();
-                    });
-                }
+                rustdeskCard.addEventListener('click', ativarEfeitoSeta);
             }
             
             if (anydeskCard) {
-                const anydeskUrl = anydeskCard.querySelector('.card-link').href;
-                anydeskCard.addEventListener('click', (e) => handleCardClick(e, anydeskUrl));
-                
-                const anydeskBtn = anydeskCard.querySelector('.download-btn');
-                if (anydeskBtn) {
-                    anydeskBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        showDownloadIndicator();
-                    });
-                }
+                anydeskCard.addEventListener('click', ativarEfeitoSeta);
             }
         });
+        
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            const event = new Event('DOMContentLoaded');
+            document.dispatchEvent(event);
+        }
     </script>
 </body>
 </html>
